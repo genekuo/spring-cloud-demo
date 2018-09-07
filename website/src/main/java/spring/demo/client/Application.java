@@ -36,7 +36,7 @@ public class Application implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 		// Search for a flight
 		SearchQuery searchQuery = new SearchQuery("NYC", "SFO", "22-JAN-18");
-		//Flight[] flights = searchClient.postForObject("http://192.168.60.32:8090/search/get", searchQuery, Flight[].class);
+		//Flight[] flights = searchClient.postForObject("http://localhost:8090/search/get", searchQuery, Flight[].class);
 
 		//Flight[] flights = restClient.postForObject("http://search-service/search/get", searchQuery, Flight[].class);
 		Flight[] flights = restClient.postForObject("http://search-apigateway/api/search/get", searchQuery, Flight[].class);
@@ -55,7 +55,7 @@ public class Application implements CommandLineRunner {
 		booking.setPassengers(passengers);
 		long bookingId = 0;
 		try {
-			//bookingId = bookingClient.postForObject("http://192.168.60.32:8060/booking/create", booking, long.class);
+			//bookingId = bookingClient.postForObject("http://localhost:8060/booking/create", booking, long.class);
 			// Use service endpoint
 			//bookingId = restClient.postForObject("http://book-service/booking/create", booking, long.class);
 			// Use api gateway
@@ -71,7 +71,7 @@ public class Application implements CommandLineRunner {
 			return;
 		try {
 			CheckInRecord checkIn = new CheckInRecord("Franc", "Gavin", "28C", null, "BF101", "22-JAN-18", bookingId);
-			//long checkinId = checkInClient.postForObject("http://192.168.60.32:8070/checkin/create", checkIn, long.class);
+			//long checkinId = checkInClient.postForObject("http://localhost:8070/checkin/create", checkIn, long.class);
 			// Use service endpoint
 			//long checkinId = restClient.postForObject("http://checkin-service/checkin/create", checkIn, long.class);
 			// Use api gateway
