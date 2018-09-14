@@ -1,1 +1,1 @@
-docker run -p 8060:8060 -t book-container:1.0
+docker run -p 8060:8060 -t book:2.0

@@ -1,1 +1,1 @@
-docker run -p 8090:8090 -t search-container:1.0
+docker run -p 8090:8090 -t search:2.0

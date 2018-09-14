@@ -1,1 +1,1 @@
-docker run -p 8080:8080 -t fares-container:1.0
+docker run -p 8080:8080 -t fares:2.0

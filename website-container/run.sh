@@ -1,1 +1,1 @@
-docker run -p 8001:8001 -t website-container:1.0
+docker run -p 8001:8001 -t website:2.0
