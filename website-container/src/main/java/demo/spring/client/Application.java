@@ -31,7 +31,7 @@ public class Application implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 		// Search for a flight
 		SearchQuery searchQuery = new SearchQuery("NYC", "SFO", "22-JAN-18");
-		Flight[] flights = searchClient.postForObject("http://locahost:8090/search/get", searchQuery,
+		Flight[] flights = searchClient.postForObject("http://192.168.60.32:8090/search/get", searchQuery,
 				Flight[].class);
 
 		Arrays.asList(flights).forEach(flight -> logger.info(" flight >" + flight));
@@ -51,7 +51,7 @@ public class Application implements CommandLineRunner {
 			// long bookingId =
 			// bookingClient.postForObject("http://book-service/booking/create",
 			// booking, long.class);
-			bookingId = bookingClient.postForObject("http://localhost:8060/booking/create", booking, long.class);
+			bookingId = bookingClient.postForObject("http://192.168.60.32:8060/booking/create", booking, long.class);
 			logger.info("Booking created " + bookingId);
 		} catch (Exception e) {
 			logger.error("BOOKING SERVICE NOT AVAILABLE...!!!");
@@ -62,7 +62,7 @@ public class Application implements CommandLineRunner {
 			return;
 		try {
 			CheckInRecord checkIn = new CheckInRecord("Franc", "Gavin", "28C", null, "BF101", "22-JAN-18", bookingId);
-			long checkinId = checkInClient.postForObject("http://localhost:8070/checkin/create", checkIn,
+			long checkinId = checkInClient.postForObject("http://192.168.60.32:8070/checkin/create", checkIn,
 					long.class);
 			logger.info("Checked IN " + checkinId);
 		} catch (Exception e) {

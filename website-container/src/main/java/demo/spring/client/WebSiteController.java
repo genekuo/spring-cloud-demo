@@ -35,7 +35,7 @@ public class WebSiteController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String greetingSubmit(@ModelAttribute UIData uiData, Model model) {
-		Flight[] flights = searchClient.postForObject("http://localhost:8090/search/get", uiData.getSearchQuery(),
+		Flight[] flights = searchClient.postForObject("http://192.168.60.32:8090/search/get", uiData.getSearchQuery(),
 				Flight[].class);
 		uiData.setFlights(Arrays.asList(flights));
 		model.addAttribute("uidata", uiData);
@@ -68,7 +68,7 @@ public class WebSiteController {
 			// long bookingId =
 			// bookingClient.postForObject("http://book-service/booking/create",
 			// booking, long.class);
-			bookingId = bookingClient.postForObject("http://localhost:8060/booking/create", booking, long.class);
+			bookingId = bookingClient.postForObject("http://192.168.60.32:8060/booking/create", booking, long.class);
 			logger.info("Booking created " + bookingId);
 		} catch (Exception e) {
 			logger.error("BOOKING SERVICE NOT AVAILABLE...!!!");
@@ -88,7 +88,7 @@ public class WebSiteController {
 	@RequestMapping(value = "/search-booking-get", method = RequestMethod.POST)
 	public String searchBookingSubmit(@ModelAttribute UIData uiData, Model model) {
 		Long id = new Long(uiData.getBookingid());
-		BookingRecord booking = bookingClient.getForObject("http://localhost:8060/booking/get/" + id,
+		BookingRecord booking = bookingClient.getForObject("http://192.168.60.32:8060/booking/get/" + id,
 				BookingRecord.class);
 		Flight flight = new Flight(booking.getFlightNumber(), booking.getOrigin(), booking.getDestination(),
 				booking.getFlightDate(), new Fares(booking.getFare(), "AED"));
@@ -110,7 +110,7 @@ public class WebSiteController {
 		CheckInRecord checkIn = new CheckInRecord(firstName, lastName, "28C", null, flightDate, flightDate,
 				new Long(bookingid).longValue());
 
-		long checkinId = checkInClient.postForObject("http://localhost:8070/checkin/create", checkIn, long.class);
+		long checkinId = checkInClient.postForObject("http://192.168.60.32:8070/checkin/create", checkIn, long.class);
 		model.addAttribute("message", "Checked In, Seat Number is 28c , checkin id is " + checkinId);
 		return "checkinconfirm";
 	}

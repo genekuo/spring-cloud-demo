@@ -1,0 +1,1 @@
+docker run -p 8888:8888 -t config-server:2.0

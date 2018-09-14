@@ -32,7 +32,7 @@ public class BookingComponent {
 	FareServiceProxy fareServiceProxy;
 
 	// For conatiner
-	private static final String FareURL = "http://localhost:8080/fares";
+	private static final String FareURL = "http://192.168.60.32:8080/fares";
 	// For container
 	private RestTemplate restTemplate;
 
